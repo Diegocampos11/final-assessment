@@ -84,7 +84,7 @@ export default function User() {
 
   const loaderJSX = () => {
     return (
-      <div className="flex-center" style={{ height: "100%" }}>
+      <div className="flex-center h-100">
         <div className="lds-ring">
           <div></div>
           <div></div>
