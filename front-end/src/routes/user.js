@@ -13,11 +13,13 @@ export default function User() {
 
   const onFinish = async (values) => {
     setShowLoader(true);
-    const user = await saveData(values);
-    if (user != undefined) {
-      dispatch(increment(values));
+    const data = await saveData(values);
+    setShowLoader(false);
+    if (data.status === 201) {
+      const user = await data.json();
+      dispatch(increment(user));
       navigate("/data-sent");
-    }
+    } else navigate("/error");
   };
 
   const formJSX = () => {

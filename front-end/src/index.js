@@ -10,6 +10,7 @@ import User from "./routes/User";
 import UserUpdate from "./routes/UserUpdate";
 import UsersList from "./routes/UsersList";
 import DataSent from "./routes/DataSent";
+import Error from "./routes/Error";
 import { Provider } from "react-redux";
 import store from "./store/store";
 
@@ -28,12 +29,16 @@ const router = createBrowserRouter([
     element: <UsersList />,
   },
   {
+    path: "user-info",
+    element: <UserUpdate />,
+  },
+  {
     path: "data-sent",
     element: <DataSent />,
   },
   {
-    path: "user-info",
-    element: <UserUpdate />,
+    path: "error",
+    element: <Error />,
   },
 ]);
 

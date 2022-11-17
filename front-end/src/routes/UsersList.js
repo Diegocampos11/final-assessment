@@ -32,16 +32,24 @@ export default function UsersList() {
     return (
       <>
         <Row justify="center" align="top" className="p-5">
-          <Button size="large" type="primary" icon={<UserAddOutlined />} onClick={() => createUser()}>
+          <Button
+            size="large"
+            type="primary"
+            icon={<UserAddOutlined />}
+            onClick={() => createUser()}
+          >
             Create user
           </Button>
         </Row>
-        <Row justify="center" align="top"> 
+        <Row justify="center" align="top">
           {users.length > 0 ? (
             users.map((user, index) => (
-                <div key={index} className="col-4 d-flex justify-content-around">
-                  <UserCard user={user} />
-                </div>
+              <div
+                key={index}
+                className="col-12 col-sm-12 col-md-6 col-lg-4 d-flex justify-content-around"
+              >
+                <UserCard user={user} />
+              </div>
             ))
           ) : (
             <h1 className="text-white mt-5">No data</h1>

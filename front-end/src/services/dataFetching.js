@@ -7,7 +7,7 @@ const saveData = async (jsonBody) => {
     },
     body: JSON.stringify(jsonBody),
   });
-  return await data.json();
+  return data;
 };
 
 const updateData = async (jsonBody) => {
