@@ -24,12 +24,16 @@ export default function UsersList() {
       });
   }, []);
 
+  const createUser = () => {
+    navigate("/create-user");
+  };
+
   const usersListJSX = () => {
     console.error(users);
     return (
       <>
         <Row justify="center" align="top" className="p-5">
-          <Button size="large" type="primary" icon={<UserAddOutlined />}>
+          <Button size="large" type="primary" icon={<UserAddOutlined />} onClick={() => createUser()}>
             Create user
           </Button>
         </Row>
@@ -37,9 +41,7 @@ export default function UsersList() {
           {users.length > 0 ? (
             users.map((user) => (
               <>
-                <Col>
-                  <UserCard user={user} />
-                </Col>
+                <UserCard user={user} />
               </>
             ))
           ) : (
