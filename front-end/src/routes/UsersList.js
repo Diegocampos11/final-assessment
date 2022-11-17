@@ -33,13 +33,13 @@ export default function UsersList() {
             Create user
           </Button>
         </Row>
-        <Row justify="center" align="top">
+        <Row justify="center" align="top"> 
           {users.length > 0 ? (
             users.map((user) => (
               <>
-                <Col>
+                <div className="col-4 d-flex justify-content-around">
                   <UserCard user={user} />
-                </Col>
+                </div>
               </>
             ))
           ) : (
