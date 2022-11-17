@@ -41,4 +41,9 @@ public class UserController {
             return service.save(user);
         } else return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Long id){
+        return service.delete(id);
+    }
 }
