@@ -15,27 +15,25 @@ public class UserService {
     @Autowired
     UserJpaRepository repository;
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return repository.findAll();
     }
 
-    public User findUserById(Long id){
+    public User findUserById(Long id) {
         return repository.findById(id).get();
     }
 
-    public ResponseEntity<User> save(User user){
-        if (checkUser(user)){
+    public ResponseEntity<User> save(User user) {
+        if (checkUser(user)) {
             return new ResponseEntity<>(repository.save(user), HttpStatus.CREATED);
         }
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
     private boolean checkUser(User user) {
-        if ( user.getFirstName().isEmpty()
-                || user.getLastName().isEmpty() || user.getPhoneNumber().isEmpty()
-                || user.getEmail().length() <= 0 || !user.getEmail().toLowerCase().matches("^([a-z])(\\w+)@([a-z]+)\\.([a-z]+)$")){
-            return false;
-        }
-        return true;
+        return !user.getFirstName().isEmpty()
+                && !user.getLastName().isEmpty() && !user.getPhoneNumber().isEmpty()
+                && user.getEmail().length() > 0 && user.getEmail().toLowerCase().matches(
+                "^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     }
 }

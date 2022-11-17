@@ -3,7 +3,7 @@ import './UserCard.css'
 import { UserOutlined } from "@ant-design/icons";
 const UserCard = (props) => {
     return (
-        <div className="col-4 shadow p-3 mb-5 bg-body rounded ">
+        <div className="col-4 shadow p-3 mb-5 bg-body rounded">
             <div className="d-flex justify-content-evenly">
                 <UserOutlined style={{ fontSize: 90 }} />
                 <div className="d-block">
