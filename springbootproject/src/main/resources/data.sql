@@ -1,4 +1,4 @@
-insert into users (first_name, last_name, phone_number, email) values ('Conny', 'Smorthit', '2739444360', 'csmorthit0@cam.ac.uk');
+insert into users (first_name, last_name, phone_number, email) values ('Conny', 'Smorthit', '2739444360', 'csmorthit0@camac.uk');
 insert into users (first_name, last_name, phone_number, email) values ('Tobe', 'Kensall', '3478347582', 'tkensall1@opensource.org');
 insert into users (first_name, last_name, phone_number, email) values ('Genvieve', 'Brazear', '9438993159', 'gbrazear2@huffingtonpost.com');
 insert into users (first_name, last_name, phone_number, email) values ('Anthea', 'Brisbane', '7375686015', 'abrisbane3@bloglines.com');
