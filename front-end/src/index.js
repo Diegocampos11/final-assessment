@@ -5,9 +5,10 @@ import "./css/index.css";
 import reportWebVitals from "./reportWebVitals";
 import ErrorPage from "./error-page";
 import "antd/dist/antd.css";
-import Root from "./routes/root";
-import User from "./routes/user";
-import DataSent from "./routes/dataSent";
+import Root from "./routes/Root";
+import User from "./routes/User";
+import UsersList from "./routes/UsersList";
+import DataSent from "./routes/DataSent";
 import { Provider } from "react-redux";
 import store from "./store/store";
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "user",
     element: <User />,
+  },
+  {
+    path: "users-list",
+    element: <UsersList />,
   },
   {
     path: "data-sent",

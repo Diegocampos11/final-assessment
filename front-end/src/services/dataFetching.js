@@ -10,4 +10,9 @@ const saveData = async (jsonBody) => {
   return await data.json();
 };
 
-export { saveData };
+const getAllUsers = async () => {
+  const data = await fetch(`/api/user/get_all`);
+  return await data.json();
+};
+
+export { saveData, getAllUsers };
