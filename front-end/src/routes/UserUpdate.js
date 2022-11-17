@@ -12,45 +12,48 @@ export default function User() {
   const navigate = useNavigate();
   const [showLoader, setShowLoader] = useState(false);
   const { state } = useLocation();
-  const { id } = state
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const [email, setEmail] = useState('')
-  const [loaded, setLoaded] = useState(false)
+  const { id } = state;
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     getUserById(id).then((data) => {
-      console.log(data.firstName)
-      setFirstName(data.firstName)
-      setLastName(data.lastName)
-      setPhoneNumber(data.phoneNumber)
-      setEmail(data.email)
-      setLoaded(true)
-    })
-  }, [])
+      console.log(data.firstName);
+      setFirstName(data.firstName);
+      setLastName(data.lastName);
+      setPhoneNumber(data.phoneNumber);
+      setEmail(data.email);
+      setLoaded(true);
+    });
+  }, []);
 
   const onFinish = async (values) => {
     setShowLoader(true);
-    const user = await updateData(Object.assign({id: id}, values));
-    if (user != undefined) {
-      dispatch(increment(values));
+    const data = await updateData(Object.assign({ id: id }, values));
+    if (data.status === 201) {
+      const user = await data.json();
+      dispatch(increment(user));
       navigate("/data-sent");
-    }
+    } else navigate("/error");
   };
-  
+
   const deleteUserHandler = () => {
-    deleteUser(id).then((data) =>{
-      if(data == true) navigate("/data-sent");
-      else navigate("/error")
-    })
-  }
+    deleteUser(id).then((data) => {
+      if (data == true) navigate("/data-sent");
+      else navigate("/error");
+    });
+  };
 
   const formJSX = () => {
     if (loaded) {
       return (
         <div className="flex-center" style={{ height: "100%" }}>
-          <h1 style={{ marginBottom: 0, color: "#000b70", fontStyle: "italic" }}>
+          <h1
+            style={{ marginBottom: 0, color: "#000b70", fontStyle: "italic" }}
+          >
             User Info
           </h1>
           {/* <h2>Sign Up</h2> */}
@@ -61,7 +64,12 @@ export default function User() {
             autoComplete="off"
             onFinish={onFinish}
             style={{ width: "30%" }}
-            initialValues={{ firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email }}
+            initialValues={{
+              firstName: firstName,
+              lastName: lastName,
+              phoneNumber: phoneNumber,
+              email: email,
+            }}
           >
             <Form.Item
               name="firstName"
@@ -100,10 +108,19 @@ export default function User() {
             <br></br>
             <br></br>
             <Form.Item>
-              <Button className="submit-button" type="primary" htmlType="submit">
+              <Button
+                className="submit-button"
+                type="primary"
+                htmlType="submit"
+              >
                 UPDATE
               </Button>
-              <Button className="delete-button mt-4" type="primary" danger onClick={deleteUserHandler}>
+              <Button
+                className="delete-button mt-4"
+                type="primary"
+                danger
+                onClick={deleteUserHandler}
+              >
                 DELETE
               </Button>
             </Form.Item>
