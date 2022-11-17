@@ -10,23 +10,21 @@ import "./../css/user.scss";
 export default function User() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [showLoader, setShowLoader] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
   const { state } = useLocation();
   const { id } = state;
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     getUserById(id).then((data) => {
-      console.log(data.firstName);
       setFirstName(data.firstName);
       setLastName(data.lastName);
       setPhoneNumber(data.phoneNumber);
       setEmail(data.email);
-      setLoaded(true);
+      setShowLoader(false);
     });
   }, []);
 
@@ -48,86 +46,77 @@ export default function User() {
   };
 
   const formJSX = () => {
-    if (loaded) {
-      return (
-        <div className="flex-center" style={{ height: "100%" }}>
-          <h1
-            style={{ marginBottom: 0, color: "#000b70", fontStyle: "italic" }}
+    return (
+      <div className="flex-center" style={{ height: "100%" }}>
+        <h1 style={{ marginBottom: 0, color: "#000b70", fontStyle: "italic" }}>
+          User Info
+        </h1>
+        <br></br>
+        <br></br>
+        <Form
+          name="basic"
+          autoComplete="off"
+          onFinish={onFinish}
+          style={{ width: "30%" }}
+          initialValues={{
+            firstName: firstName,
+            lastName: lastName,
+            phoneNumber: phoneNumber,
+            email: email,
+          }}
+        >
+          <Form.Item
+            name="firstName"
+            rules={[{ required: true, message: "Input your first name" }]}
           >
-            User Info
-          </h1>
-          {/* <h2>Sign Up</h2> */}
-          <br></br>
-          <br></br>
-          <Form
-            name="basic"
-            autoComplete="off"
-            onFinish={onFinish}
-            style={{ width: "30%" }}
-            initialValues={{
-              firstName: firstName,
-              lastName: lastName,
-              phoneNumber: phoneNumber,
-              email: email,
-            }}
+            <Input placeholder="First Name*" />
+          </Form.Item>
+          <Form.Item
+            name="lastName"
+            rules={[{ required: true, message: "Input your last name" }]}
           >
-            <Form.Item
-              name="firstName"
-              rules={[{ required: true, message: "Input your first name" }]}
-            >
-              <Input placeholder="First Name*" />
-            </Form.Item>
-            <Form.Item
-              name="lastName"
-              rules={[{ required: true, message: "Input your last name" }]}
-            >
-              <Input placeholder="Last Name*" />
-            </Form.Item>
-            <Form.Item
-              name="phoneNumber"
-              rules={[{ required: true, message: "Input your phone number" }]}
-            >
-              <Input placeholder="Phone number" />
-            </Form.Item>
-            <Form.Item
-              name="email"
-              rules={[
-                {
-                  type: "email",
-                  message: "Not a valid email",
-                },
-                {
-                  required: true,
-                  message: "Input your email",
-                },
-              ]}
-            >
-              <Input placeholder="Email*" />
-            </Form.Item>
+            <Input placeholder="Last Name*" />
+          </Form.Item>
+          <Form.Item
+            name="phoneNumber"
+            rules={[{ required: true, message: "Input your phone number" }]}
+          >
+            <Input placeholder="Phone number" />
+          </Form.Item>
+          <Form.Item
+            name="email"
+            rules={[
+              {
+                type: "email",
+                message: "Not a valid email",
+              },
+              {
+                required: true,
+                message: "Input your email",
+              },
+            ]}
+          >
+            <Input placeholder="Email*" />
+          </Form.Item>
 
-            <br></br>
-            <br></br>
-            <Form.Item>
-              <Button
-                className="submit-button"
-                type="primary"
-                htmlType="submit"
-              >
-                UPDATE
-              </Button>
-              <Button
-                className="delete-button mt-4"
-                type="primary"
-                danger
-                onClick={deleteUserHandler}
-              >
-                DELETE
-              </Button>
-            </Form.Item>
-          </Form>
-        </div>
-      );
-    }
+          <br></br>
+          <br></br>
+          <Form.Item>
+            <Button className="submit-button" type="primary" htmlType="submit">
+              UPDATE
+            </Button>
+            <Button
+              className="delete-button mt-4"
+              type="primary"
+              danger
+              onClick={deleteUserHandler}
+            >
+              DELETE
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+    );
   };
 
   const loaderJSX = () => {
