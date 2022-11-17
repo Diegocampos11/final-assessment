@@ -29,7 +29,9 @@ public class UserController {
 
     @PostMapping()
     public ResponseEntity<User> create(@RequestBody User user) {
-        return service.save(user);
+        if (user.getId().toString() == "") {
+            return service.save(user);
+        } else return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping()
