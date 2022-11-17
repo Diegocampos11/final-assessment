@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./css/index.css";
 import reportWebVitals from "./reportWebVitals";
 import ErrorPage from "./error-page";
 import "antd/dist/antd.css";
 import Root from "./routes/root";
-import Form from "./routes/form";
+import User from "./routes/user";
 import DataSent from "./routes/dataSent";
-// import { Provider } from "react-redux";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +18,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "form",
-    element: <Form />,
+    path: "user",
+    element: <User />,
   },
   {
     path: "data-sent",
@@ -29,9 +30,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
+    <Provider store={store}>
       <RouterProvider router={router} />
-    {/* </Provider> */}
+    </Provider>
   </React.StrictMode>
 );
 

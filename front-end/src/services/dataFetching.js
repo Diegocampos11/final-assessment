@@ -1,10 +1,5 @@
-const getQuestions = async () => {
-  const data = await fetch("/api/questions");
-  return await data.json();
-};
-
 const saveData = async (jsonBody) => {
-  const data = await fetch(`/api/save`, {
+  const data = await fetch(`/api/user`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -15,4 +10,4 @@ const saveData = async (jsonBody) => {
   return await data.json();
 };
 
-export { getQuestions, saveData };
+export { saveData };
