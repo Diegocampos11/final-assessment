@@ -34,4 +34,10 @@ const getUserById = async (id) => {
 }
 
 
-export { saveData, getAllUsers, getUserById, updateData };
+const deleteUser = async (id) => {
+  const data = await fetch(`/api/user/${id}`, {method: "DELETE"})
+  return await data.json();
+}
+
+
+export { saveData, getAllUsers, getUserById, updateData, deleteUser };

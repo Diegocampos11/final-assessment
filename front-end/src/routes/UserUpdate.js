@@ -1,6 +1,6 @@
 import { Input, Form, Button } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
-import { updateData } from "../services/dataFetching";
+import { deleteUser, updateData } from "../services/dataFetching";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { increment } from "../store/userData.js";
@@ -40,7 +40,10 @@ export default function User() {
   };
   
   const deleteUserHandler = () => {
-    
+    deleteUser(id).then((data) =>{
+      if(data == true) navigate("/data-sent");
+      else navigate("/error")
+    })
   }
 
   const formJSX = () => {
