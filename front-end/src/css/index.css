@@ -29,6 +29,12 @@ html, body, #root {
   width: 100%;
 }
 
+.delete-button {
+  border-color: red !important;
+  background: red !important;
+  width: 100%;
+}
+
 .hide {
   display: none;
 }

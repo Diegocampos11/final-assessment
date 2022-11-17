@@ -29,7 +29,6 @@ export default function UsersList() {
   };
 
   const usersListJSX = () => {
-    console.error(users);
     return (
       <>
         <Row justify="center" align="top" className="p-5">
@@ -39,12 +38,10 @@ export default function UsersList() {
         </Row>
         <Row justify="center" align="top"> 
           {users.length > 0 ? (
-            users.map((user) => (
-              <>
-                <div className="col-4 d-flex justify-content-around">
+            users.map((user, index) => (
+                <div key={index} className="col-4 d-flex justify-content-around">
                   <UserCard user={user} />
                 </div>
-              </>
             ))
           ) : (
             <h1 className="text-white mt-5">No data</h1>

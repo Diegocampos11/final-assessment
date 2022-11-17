@@ -7,6 +7,7 @@ import ErrorPage from "./error-page";
 import "antd/dist/antd.css";
 import Root from "./routes/Root";
 import User from "./routes/User";
+import UserUpdate from "./routes/UserUpdate";
 import UsersList from "./routes/UsersList";
 import DataSent from "./routes/DataSent";
 import { Provider } from "react-redux";
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "data-sent",
     element: <DataSent />,
+  },
+  {
+    path: "user-info",
+    element: <UserUpdate />,
   },
 ]);
 

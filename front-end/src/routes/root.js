@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
 
 export default function Root() {
-  return <Navigate to="/user" />;
+  return <Navigate to="/users-list" />;
 }
