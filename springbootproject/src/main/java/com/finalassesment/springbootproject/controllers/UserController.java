@@ -29,7 +29,7 @@ public class UserController {
 
     @PostMapping()
     public ResponseEntity<User> create(@RequestBody User user) {
-        if (user.getId().toString() == "") {
+        if (user.getId() == null) {
             return service.save(user);
         } else return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
