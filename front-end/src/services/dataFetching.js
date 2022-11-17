@@ -33,4 +33,5 @@ const getUserById = async (id) => {
   return await data.json();
 }
 
+
 export { saveData, getAllUsers, getUserById, updateData };

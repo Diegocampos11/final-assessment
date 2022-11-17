@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -28,6 +29,15 @@ public class UserService {
             return new ResponseEntity<>(repository.save(user), HttpStatus.CREATED);
         }
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<Boolean> delete(Long id) {
+        Optional<User> user = repository.findById(id);
+        if (user.isPresent()) {
+            repository.delete(user.get());
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
     }
 
     private boolean checkUser(User user) {
